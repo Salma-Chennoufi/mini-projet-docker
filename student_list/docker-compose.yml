@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+    API:
+        image: student_list
+        container_name: api_c
+        volumes:
+            - ./simple_api/student_age.json:/data/student_age.json
+        ports:
+            - "5000:5000"
+        networks:
+            - student_list_network
+
+    website:
+        image: php:apache
+        container_name: website_c
+        environment:
+            - USERNAME=root
+            - PASSWORD=root
+        volumes:
+            - ./website:/var/www/html
+        ports:
+            - "8080:80"
+        depends_on:
+            - API
+        networks:
+            - student_list_network
+
+    
+networks:
+    student_list_network:

@@ -8,7 +8,7 @@ Ce projet consiste à dockeriser une application Python Flask (backend) et PHP (
 
 git clone https://github.com/Salma-Chennoufi/mini-projet-docker.git
 
-**I. Construire (build) et tester l'API**
+## I. Construire (build) et tester l'API
 
 ###  Dockerfile 
 
@@ -79,3 +79,35 @@ git clone https://github.com/Salma-Chennoufi/mini-projet-docker.git
 **Envoyer une requête GET** à l'API en utilisant l'authentification root:root pour récupérer la liste des âges des étudiants.
 **L'API répond correctement**
 
+
+## II. Infrastructure as Code (docker-compose.yml)
+
+### Service API:
+
+![](/screenshots/image15.png)
+
+Le service **API** utilise l’image **student_list** pour exécuter l’API Flask, monte le fichier **student_age.json** dans /data pour la persistance des données, expose le port 5000 pour l’accès externe et est connecté au réseau **student_list_network** pour communiquer avec les autres services.
+
+
+### Service website:
+
+![](/screenshots/image16.png)
+
+Le service **website** utilise l’image **php:apache** pour exécuter l’interface utilisateur, monte les fichiers du site web dans /var/www/html, définit des variables d’environnement pour l’authentification, expose le port 8080 pour l’accès au site et dépend du service api, garantissant que l’API démarre avant lui.
+
+
+### Networks:
+
+![](/screenshots/image17.png)
+
+Définit un réseau Docker personnalisé pour la communication entre API et Website
+
+
+### Lancement de docker-compose.yml
+
+![](/screenshots/image18.png)
+![](image19.png)
+
+
+**La dockerisation de l'application SUPMIT a été réalisée avec succès!**
+![](/screenshots/image20.png)
