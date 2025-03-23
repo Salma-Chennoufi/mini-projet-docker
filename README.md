@@ -106,8 +106,38 @@ Définit un réseau Docker personnalisé pour la communication entre API et Webs
 ### Lancement de docker-compose.yml
 
 ![](/screenshots/image18.png)
-![](image19.png)
+![](/screenshots/image19.png)
 
 
 **La dockerisation de l'application SUPMIT a été réalisée avec succès!**
 ![](/screenshots/image20.png)
+
+
+## III. Docker Registry
+
+### Service registry:
+
+![](/screenshots/image25.png)
+
+Ce service déploie un registre Docker privé accessible sur le port 5000 et connecté au réseau registry_network.
+
+### Service registry-ui:
+
+![](/screenshots/image26.png)
+
+Ce service déploie une interface web pour gérer le registre Docker privé, accessible sur le port 8081 et dépendant du service registry.
+
+### Lancement de docker-compose-registry.yml
+
+![](/screenshots/image21.png)
+
+
+![](/screenshots/image22.png)
+
+
+![](/screenshots/image23.png)
+Ces commandes taguent l’image student_list pour l’associer au registre privé localhost:5000, puis la poussent vers ce registre pour qu’elle puisse être stockée et réutilisée.
+
+
+![](/screenshots/image24.png)
+L'image **student_list** existe dans le registre privé.
