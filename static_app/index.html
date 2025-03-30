@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Static App</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('../screenshots/bg.png') no-repeat center center fixed;
+            background-size: cover;
+            position: relative;
+            height: 100vh;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(18, 194, 233, 0.7), rgba(196, 113, 237, 0.7), rgba(246, 79, 89, 0.7));
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            width: 300px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            animation: slideUp 0.8s ease forwards;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        @keyframes slideUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card:nth-child(1) { animation-delay: 0.2s; }
+        .card:nth-child(2) { animation-delay: 0.4s; }
+        .card:nth-child(3) { animation-delay: 0.6s; }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: block;
+            text-align: center;
+        }
+
+        .card h2 {
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .card p {
+            opacity: 0.9;
+            line-height: 1.6;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta {
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        .btn {
+            background: white;
+            color: #c471ed;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.3);
+            background: #f8f8f8;
+        }
+
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .shape {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+            animation: float 15s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            50% { opacity: 0.5; }
+            100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .cards {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Welcome Everyone</h1>
+            <p class="tagline">Explore the infinite possibilities of creativity</p>
+        </header>
+
+        <div class="cards">
+            <div class="card">
+                <span class="card-icon">💡</span>
+                <h2>Innovation</h2>
+                <p>Discover revolutionary ideas that transform how we think and interact with the digital world.</p>
+            </div>
+            <div class="card">
+                <span class="card-icon">💎</span>
+                <h2>Design</h2>
+                <p>Aesthetics and functionality meet to create memorable and immersive visual experiences.</p>
+            </div>
+            <div class="card">
+                <span class="card-icon">🚀</span>
+                <h2>Technology</h2>
+                <p>Explore the latest technological advances that push the boundaries of what's possible online.</p>
+            </div>
+        </div>
+
+        <div class="cta">
+            <button class="btn">Explore Now</button>
+        </div>
+    </div>
+
+    <div class="floating-shapes">
+        <script>
+            // Create random floating shapes
+            for (let i = 0; i < 15; i++) {
+                const shape = document.createElement('div');
+                shape.classList.add('shape');
+                
+                // Random size
+                const size = Math.random() * 100 + 50;
+                shape.style.width = `${size}px`;
+                shape.style.height = `${size}px`;
+                
+                // Random initial position
+                shape.style.left = `${Math.random() * 100}%`;
+                shape.style.top = `${Math.random() * 100 + 50}%`;
+                
+                // Random animation duration and delay
+                shape.style.animationDuration = `${Math.random() * 20 + 10}s`;
+                shape.style.animationDelay = `${Math.random() * 5}s`;
+                
+                document.querySelector('.floating-shapes').appendChild(shape);
+            }
+        </script>
+    </div>
+</body>
+</html>
