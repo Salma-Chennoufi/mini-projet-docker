@@ -165,7 +165,7 @@ Exécuter l’image Docker en local:
 ![](/static_app/screenshots/image-3.png)
 
 Tester l’accessibilité avec curl:
-![](/static_app/static_app/screenshots/image-4.png)
+![](/static_app/screenshots/image-4.png)
 
    **3. Release:** 
 
@@ -176,3 +176,36 @@ Pousser l’image sur Docker Hub.
 
 
 ### CD (Continuous Deployment):
+
+**jenkinsfile**
+
+La section 'environment' définit une variable d'environnement 'DOCKER_IMAGE', qui spécifie le nom et la version de l'image Docker à construire, ici 'salma171/static_app:latest'. Cette variable sera utilisée dans les étapes suivantes du pipeline pour construire et déployer l'image Docker.
+
+![](/static_app/screenshots/image27.png)
+
+La section 'stages' définit les différentes étapes du pipeline. 
+La première étape, nommée 'Checkout', permet de récupérer le code source du dépôt Git. 
+La commande 'checkout scm' indique à Jenkins de cloner automatiquement le dépôt associé au projet, tandis que 'echo' affiche un message dans la console pour indiquer le début de cette opération.
+
+![](/static_app/screenshots/image28.png)
+
+L'étape 'Build' a pour objectif de construire une image Docker à partir du Dockerfile présent dans le projet. 
+Le message 'Building the Docker image...' est affiché pour indiquer le début du processus. 
+Ensuite, la commande 'docker build -t $DOCKER_IMAGE .' est exécutée via un bloc 'script' pour construire l'image en utilisant la variable définie précédemment ($DOCKER_IMAGE).
+
+![](/static_app/screenshots/image29.png)
+
+L'étape 'Deploy' est chargée de déployer l'application. 
+Le message 'Deploying the application...' informe que le déploiement est en cours. 
+La commande 'docker run -d -p 80:80 $DOCKER_IMAGE' lance un conteneur en arrière-plan à partir de l'image Docker construite précédemment, en exposant le port 80 du conteneur sur le port 80 de la machine hôte, rendant ainsi l'application accessible via le navigateur.
+
+![](/static_app/screenshots/image30.png)
+
+La section 'post' contient des actions à exécuter une fois le pipeline terminé, quel que soit le résultat. 
+Le bloc 'always' s'exécute dans tous les cas : ici, il affiche un message et nettoie les ressources Docker inutilisées avec 'docker system prune -f'.
+Le bloc 'success' s'exécute uniquement si le pipeline se termine avec succès, et affiche un message de confirmation.
+Le bloc 'failure' s'exécute si le pipeline échoue, et affiche un message d'erreur.
+
+![](/static_app/screenshots/image31.png)
+
+
