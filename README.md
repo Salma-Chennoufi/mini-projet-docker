@@ -141,3 +141,38 @@ Ces commandes taguent l’image student_list pour l’associer au registre priv�
 
 ![](/screenshots/image24.png)
 L'image **student_list** existe dans le registre privé.
+
+
+# Déploiement Automatisé d'une Application Web avec CI/CD sur Jenkins et AWS : Static App
+
+## Objectif
+Déployer une application web statique dans différents environnements de déploiement (simulés sur AWS).
+
+## Pipeline CI/CD sur Jenkins
+
+### CI (Continuous Integration):
+
+   **1. Build:** Dockerfile
+![](/static_app/screenshots/image.png)
+
+Construction de l'image Docker:
+![](/static_app/screenshots/image-2.png)
+![](/static_app/screenshots/image-1.png)
+
+   **2. Test:**
+
+Exécuter l’image Docker en local:
+![](/static_app/screenshots/image-3.png)
+
+Tester l’accessibilité avec curl:
+![](/static_app/static_app/screenshots/image-4.png)
+
+   **3. Release:** 
+
+Pousser l’image sur Docker Hub.
+![](/static_app/screenshots/image-5.png)
+![](/static_app/screenshots/image-6.png)
+![](/static_app/screenshots/image-7.png)
+
+
+### CD (Continuous Deployment):
