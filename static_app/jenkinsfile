@@ -18,6 +18,7 @@ pipeline {
                 echo 'Building the Docker image...'
                 script {
                     powershell 'docker build -t $DOCKER_IMAGE .'
+
                 }
             }
         }
@@ -33,6 +34,7 @@ pipeline {
                 echo 'Deploying the application...'
                 script {
                     powershell 'docker run -d -p 80:80 $DOCKER_IMAGE'
+
                 }
             }
         }
